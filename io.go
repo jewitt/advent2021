@@ -2,6 +2,7 @@ package main
 
 import (
 	"io/ioutil"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -37,6 +38,34 @@ func loadNumbers(filename string) ([]int, error) {
 	}
 
 	return numbers, nil
+}
+
+func loadNumbersByRegex(filename string, pattern string) ([][]int, error) {
+	buffer, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	re, err := regexp.Compile(pattern)
+	if err != nil {
+		return nil, err
+	}
+
+	matches := re.FindAllSubmatch(buffer, -1)
+	result := make([][]int, len(matches))
+	for i, captures := range matches {
+		result[i] = make([]int, len(captures) - 1)
+		for j, capture := range captures[1:] {
+			k, err := strconv.Atoi(string(capture))
+			if err != nil {
+				return nil, err
+			}
+
+			result[i][j] = k
+		}
+	}
+
+	return result, nil
 }
 
 func loadLines(filename string) ([]string, error) {
