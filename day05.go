@@ -6,7 +6,7 @@ func day5() (int, int) {
 		panic(err)
 	}
 
-	return day5process(matches, false), day5process(matches, true) 
+	return day5process(matches, false), day5process(matches, true)
 }
 
 func day5process(matches [][]int, diagonals bool) int {

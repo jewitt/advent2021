@@ -54,7 +54,7 @@ func loadNumbersByRegex(filename string, pattern string) ([][]int, error) {
 	matches := re.FindAllSubmatch(buffer, -1)
 	result := make([][]int, len(matches))
 	for i, captures := range matches {
-		result[i] = make([]int, len(captures) - 1)
+		result[i] = make([]int, len(captures)-1)
 		for j, capture := range captures[1:] {
 			k, err := strconv.Atoi(string(capture))
 			if err != nil {

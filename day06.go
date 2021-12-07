@@ -1,6 +1,6 @@
 package main
 
-import(
+import (
 	"strconv"
 	"strings"
 )
@@ -35,13 +35,13 @@ func countFishes(lines []string, days int) (total int) {
 			if state == 0 {
 				newfish = count
 			} else {
-				fishes[state - 1] = count
+				fishes[state-1] = count
 				total += count
 			}
 		}
 		fishes[6] += newfish
 		fishes[8] = newfish
-		total += newfish*2
+		total += newfish * 2
 	}
 
 	return total
