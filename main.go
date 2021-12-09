@@ -14,6 +14,7 @@ func main() {
 		day6,
 		day7,
 		day8,
+		day9,
 	}
 
 	fmt.Printf("running...\n\n")
